@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Flight:</strong>
+  <%= @seat.flight_id %>
+</p>
+
+<p>
+  <strong>Row number:</strong>
+  <%= @seat.row_number %>
+</p>
+
+<p>
+  <strong>Seat letter:</strong>
+  <%= @seat.seat_letter %>
+</p>
+
+<p>
+  <strong>Free:</strong>
+  <%= @seat.free %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @seat.color %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @seat.label %>
+</p>
+
+<%= link_to 'Edit', edit_seat_path(@seat) %> |
+<%= link_to 'Back', seats_path %>
