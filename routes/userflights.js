@@ -17,6 +17,7 @@ router.route('/reservation').post(function(req, res) {
     if (err) {
       return res.send(err);
     }
+    res.send('Reservation Added');
   });
 });
 
