@@ -1,5 +1,5 @@
 var Flight = require('../models/flight');
-var Seat = require('../models/userflights');
+var Seat = require('../models/userflight');
 var express = require('express');
 var nodemailer = require('nodemailer');
 var extend = require('util')._extend;
@@ -9,7 +9,7 @@ var router = express.Router();
 
 //get all the events related to a user
 router.route('/getflight').get(function(req, res) {
-  Flight.findOne({ departure: req.body.departure, destination: req.body.destination, date: req.body.date},function(err, flights) {
+  Flight.findOne({ departure: req.query.departure, destination: req.query.destination, date: req.query.date},function(err, flights) {
     if (err) {
       return res.send(err);
     }
