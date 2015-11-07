@@ -1,7 +1,8 @@
-var User = require('../models/seat');
+var Seat = require('../models/userflight');
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
+
 
 //set a reservation
 router.route('/reservation').post(function(req, res) {
@@ -14,7 +15,8 @@ router.route('/reservation').post(function(req, res) {
   seat.save(function(err) {
     if (err) {
       return res.send(err);
-    });
+    }
+  });
 });
 
 //set a reservation
@@ -23,10 +25,12 @@ router.route('/checkin').post(function(req, res) {
   seat.id_user=req.body.id_user;
   seat.id_flight=req.body.id_flight;
   seat.preference=req.body.preference;
+  seat.seat=
   seat.save(function(err) {
     if (err) {
       return res.send(err);
-    });
+    }
+  });
 });
 
 

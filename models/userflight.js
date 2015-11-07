@@ -10,12 +10,11 @@ var seatSchema = new Schema({
       {type: Schema.Types.ObjectId, ref: 'Flight'}
     ],
   seat: {
-    row : Number
-    column: String
+    row : Number,
+    column: Number
   },
   booking_number: String
 });
-eventSchema.set('versionKey', false);
-
+seatSchema.set('versionKey', false);
 
 module.exports = mongoose.model('Seat', seatSchema);
