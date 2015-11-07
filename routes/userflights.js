@@ -26,17 +26,9 @@ router.route('/checkin').post(function(req, res) {
   givenseat.id_user=req.body.id_user;
   givenseat.id_flight=req.body.id_flight;
   givenseat.preference=req.body.preference;
-  var seatmap=[
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                      'aa_aaaaa_aa',
-                  ]
+  var seatmap=[];
+  for(i=0;i<50;i++)
+    seatmap.push('aa_aaaaa_aa');
   Seat.find({id_flight: seat.id_flight}, function(err, seats) {
 
   seats.each (function (error, seat){

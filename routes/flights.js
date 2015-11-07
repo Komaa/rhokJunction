@@ -44,6 +44,7 @@ router.route('/insertflight').post(function(req, res) {
       if (err) {
         return res.send(err);
       }
+      res.send('Flight Added');
     });
 });
 
