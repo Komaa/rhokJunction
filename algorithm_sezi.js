@@ -29,7 +29,7 @@ function assignseat(freeseat, clusterofseat, user){
           clusterofseat.set(user.preference,seatgroup);
         }
       }
-    }
+    });
     if(!existingcluster){
       seat=calculatefarestseat(freeseat, clusterofseat);
       var newseatgroup= [];
@@ -42,7 +42,7 @@ function grouptocluster(freeseat, seatgroup){
   var seat= {};
   var max=0, tmp;
 
-  for(int i=0;i<freeseat.length;i++){
+  for(i=0;i<freeseat.length;i++){
     tmp=closestseat(freeseat[i],seatgroup);
     if(tmp==1){
       return freeseat[i];
@@ -54,7 +54,7 @@ function grouptocluster(freeseat, seatgroup){
 
 function closestseat(seat,seatgroup){
   var mindist=10000,tmpdistance;
-    for(int i=0;i<seatgroup.length;i++){
+    for(i=0;i<seatgroup.length;i++){
       tmpdistance=distancecalculator(seat,seatgroup[i]);
       if(tmpdistance<maxdist){
         maxdist=tmpdistance;
@@ -67,7 +67,7 @@ function closestseat(seat,seatgroup){
 function calculatefarestseat(freeseat, clusterofseat){
   var max=0, tmp;
   var seattmp= {};
-  for(int i=0;i<freeseat.length;i++){
+  for(i=0;i<freeseat.length;i++){
     tmp=calculatemindistance(freeseat[i],clusterofseat);
     if(tmp>max){
       max=tmp;
@@ -80,12 +80,12 @@ function calculatefarestseat(freeseat, clusterofseat){
 function calculatemindistance(seat,clusterofseat){
   var mindist=10000,tmpdistance;
   clusterofseat.forEach(function(value, key) {
-    for(int i=0;i<value.length;i++){
+    for(i=0;i<value.length;i++){
       tmpdistance=distancecalculator(seat,value[i]);
       if(tmpdistance<maxdist)
         maxdist=tmpdistance;
     }
-  }
+  });
 return mindist;
 }
 
