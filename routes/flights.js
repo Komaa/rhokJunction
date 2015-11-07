@@ -12,17 +12,10 @@ router.route('/getflight').get(function(req, res) {
     if (err) {
       return res.send(err);
     }
-    flights.map=[
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                        'aa_aaaaa_aa',
-                    ]
+    flights.map=[];
+    for(i=0;i<flights.number_rows;i++)
+    flights.map.push('aa_aaaaa_aa');
+
     Seat.find({id_flight: flights._id}, function(err, seats) {
 
     seats.each (function (error, seat){
@@ -37,6 +30,21 @@ router.route('/getflight').get(function(req, res) {
     res.json(flights);
     });
   });
+});
+
+router.route('/insertflight').post(function(req, res) {
+    var flight = new Flight();
+    flight.departure=req.body.departure;
+    flight.destination=req.body.destination;
+    flight.date=req.body.date;
+    flight.departure_time=req.body.departure_time;
+    flight.schema_seat=req.body.schema_seat;
+    flight.number_rows= req.body.number_rows;
+    flight.save(function(err) {
+      if (err) {
+        return res.send(err);
+      }
+    });
 });
 
 
