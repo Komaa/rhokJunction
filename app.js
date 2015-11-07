@@ -11,7 +11,7 @@ var app = express(); //Create the Express app
 
 //connect to our database
 //Ideally you will obtain DB details from a config file
-var dbName = 'calendarDB';
+var dbName = 'finnairDB';
 var connectionString = 'mongodb://localhost:27017/' + dbName;
 
 mongoose.connect(connectionString);
