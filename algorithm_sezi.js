@@ -60,7 +60,7 @@ function closestseat(seat,seatgroup){
         maxdist=tmpdistance;
       }
     }
-  
+
   return mindist;
 }
 
@@ -95,4 +95,3 @@ function distancecalculator(freeseat,occseat){  //22A
   column_distance=freeseat.column - occseat.column;
   return (row_distance + column_distance);
 }
-
