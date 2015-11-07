@@ -7,7 +7,9 @@ var flightSchema = new Schema({
   date: Date,
   departure_time: Date,
   schema_seat: String,
-  number_rows: Number
+  number_rows: Number,
+  map: [String],
+  occupied: [String]
 });
 flightSchema.set('versionKey', false);
 

@@ -10,6 +10,7 @@ var router = express.Router();
 //get all the events related to a user
 router.route('/getflight').get(function(req, res) {
   Flight.findOne({ departure: req.query.departure, destination: req.query.destination, date: req.query.date},function(err, flights) {
+    console.log(flights);
     if (err) {
       return res.send(err);
     }
@@ -18,7 +19,8 @@ router.route('/getflight').get(function(req, res) {
     flights.map.push('aa_aaaaa_aa');
 
     Seat.find({id_flight: flights._id}, function(err, seats) {
-
+      console.log(seats);
+      if(seats.length < 0) {
     seats.each (function (error, seat){
       flights.occupied.push(seat.row + "_" + seat.column) //['1_2','2_1', '2_2', '4_1','7_1','7_2']
       if(seat.column<3)
@@ -28,6 +30,7 @@ router.route('/getflight').get(function(req, res) {
       flight.map[seat.row][seat.column]=seats.preference;
 
       });
+    }
     res.json(flights);
     });
   });
