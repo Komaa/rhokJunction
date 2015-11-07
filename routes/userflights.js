@@ -41,7 +41,7 @@ router.route('/checkin').post(function(req, res) {
 
     });
   });
-  givenseat.seat=algorithm_sezi.preprocess(seatmap);
+  givenseat.seat=algorithm_sezi.preprocess(seatmap,givenseat.preference);
   givenseat.save(function(err) {
     if (err) {
       return res.send(err);

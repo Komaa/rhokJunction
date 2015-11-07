@@ -5,28 +5,79 @@
 * -
 * -
 */
-function preprocess(input){
+function preprocess(seatmap, preference){
   var clusterofseat = new Map();  //<sleepy, arrayofseat[22A,22B,22C, etc.]
-  clusterofseat=createclustermap(!!!someinput);
+  clusterofseat=createclustermap(seatmap);
   var freeseat= []; //arrayofseat[21A,21B,21C, etc.]
-  freeseat=calculatefreeseat(!!!someinput);
-
-  assignseat(freeseat,clusterofseat,user);
+  freeseat=calculatefreeseat(seatmap);
+  return assignseat(freeseat,clusterofseat,preference);
 }
 
-function assignseat(freeseat, clusterofseat, user){
+function calculatefreeseat(seatmap){
+  var freeseat= [];
+  var seat= {};
+  var col;
+  for(i=0;i<seatmap.length;i++){
+    for(j=0;j<seatmap[i].length;j++){
+      if(seatmap[i][j] !== "_" && seatmap[i][j] !== "/0"){
+        if(seatmap[i][j] === "a"){
+          if(j<3)
+            col=j-1;
+          else if(j>7)
+            col=j+1;
+          seat.row=i;
+          seat.column=col;
+          freeseat.push(seat);
+        }
+      }
+    }
+  }
+  return freeseat;
+}
+
+function createclustermap(seatmap){
+  var clusterofseat = new Map();
+  var seat= {};
+  var col;
+  var seats=[];
+  for(i=0;i<seatmap.length;i++){
+    for(j=0;j<seatmap[i].length;j++){//<sleepy, arrayofseat[22A,22B,22C, etc.]
+      if((seatmap[i][j] !== "_") && (seatmap[i][j] !== "/0") && (seatmap[i][j] !== "a")){
+        if(j<3)
+          col=j-1;
+        else if(j>7)
+          col=j+1;
+        seat.row=i;
+        seat.column=col
+        seats=clusterofseat.get(seatmap[i][j]);
+        if(seats){
+          seats.push(seat);
+          clusterofseat.set(seatmap[i][j],seats);
+        }else{
+          var filfrocio=[];
+          filfrocio.push(seat);
+          clusterofseat.set(seatmap[i][j],filfrocio);
+        }
+        }
+      }
+    }
+    return clusterofseat;
+  }
+
+
+function assignseat(freeseat, clusterofseat, preference){
   var seat={};
   var existingcluster=false;
   clusterofseat.forEach(function(value, key) {
-      if(key === user.preference){
+      if(key === preference){
         existingcluster=true;
         seat=grouptocluster(freeseat, value);
         if(seat.row== -1){
           seat=calculatefarestseat(freeseat, clusterofseat);
           var seatgroup= [];
-          seatgroup=myMap.get(user.preference);
+          seatgroup=myMap.get(preference);
           seatgroup.push(seat);
-          clusterofseat.set(user.preference,seatgroup);
+          clusterofseat.set(preference,seatgroup);
         }
       }
     });
@@ -34,8 +85,9 @@ function assignseat(freeseat, clusterofseat, user){
       seat=calculatefarestseat(freeseat, clusterofseat);
       var newseatgroup= [];
       newseatgroup.push(seat);
-      clusterofseat.set(user.preference,newseatgroup);
+      clusterofseat.set(preference,newseatgroup);
     }
+    return seat;
 }
 
 function grouptocluster(freeseat, seatgroup){
