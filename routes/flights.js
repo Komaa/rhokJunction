@@ -1,4 +1,5 @@
 var Flight = require('../models/flight');
+var Seat = require('../models/userflights');
 var express = require('express');
 var nodemailer = require('nodemailer');
 var extend = require('util')._extend;
