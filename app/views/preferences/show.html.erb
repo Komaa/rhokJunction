@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @preference.label %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @preference.color %>
+</p>
+
+<%= link_to 'Edit', edit_preference_path(@preference) %> |
+<%= link_to 'Back', preferences_path %>
