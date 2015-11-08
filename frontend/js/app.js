@@ -36,6 +36,36 @@ function hideAllComponents() {
     $('.checkin-result').hide();
 }
 
+function searchFlight() {
+    var departure = $('#departure').val();
+    if (departure==undefined || departure=="") {
+        departure = "Helsinki";
+    }
+    var destination = $('#destination').val();
+    var departure_date = $('#departure_date').val();
+    var return_date = $('#return_date').val();
+    console.log("departure " + departure + ", dest " + destination + ", departure date: " +
+        departure_date + ", return date: " + return_date);
+    var query = "http://localhost:8080/api/getflight?departure=" + departure + "&destination=" + destination + "&date=" + departure_date;
+    console.log(query);
+    $.getJSON(query, 
+        function(data_inbound) {
+        console.log("check: " + data_inbound.get("_id"));
+        if (json_in != undefined) {
+            //display in search results
+            console.log("Inbound-flight: " + json_in + " inbound");
+        }
+
+    });
+
+    $.getJSON("http://localhost:8080/api/getflight?departure=" + destination + "&destination=" + departure + "&date=" + return_date, function(json_out) {
+        if (json_out != undefined) {
+            //display in search results
+            console.log("Outbound-flight: " + json_out)
+        }
+    });
+}
+
 // jQuery-menu-aim: </meaningful part of the example>
 // jQuery-menu-aim: the following JS is used to show and hide the submenu
 // contents. Again, this can be done in any number of ways. jQuery-menu-aim
@@ -135,9 +165,17 @@ var main = function() {
   $('.checkin-btn').click(function(){
     console.log("checking in");
     hideAllComponents();
-    $('.checkin').show();
+    $('.checkin-verify').show();
   });
   
+  $('#search_flight_btn').click(function(){
+    searchFlight();
+  });
+
+  $('#get_booking_btn').click(function() {
+    hideAllComponents();
+    $('.checkin').show();
+  });
 
 }
 
