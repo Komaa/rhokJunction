@@ -19,13 +19,13 @@ router.route('/getflight').get(function(req, res) {
     flights.map=[];
     for(i=0;i<flights.number_rows;i++)
     flights.map.push('aa_aaaaa_aa');
-    console.log(flights);
+    //console.log(flights);
     Seat.find({id_flight: flights._id}, function(err, seats) {
     //seats.each (function (error, seat){
       for(i=0; i< seats.length; i++) {
 
         flights.occupied.push(seats[i].seat.row + "_" + seats[i].seat.column) //['1_2','2_1', '2_2', '4_1','7_1','7_2']
-      
+
             flights.map[seats[i].seat.row]=flights.map[seats[i].seat.row].replaceAt(seats[i].seat.column,seats[i].preference);
     }
       //});
