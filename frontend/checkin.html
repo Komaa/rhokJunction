@@ -248,6 +248,10 @@
 
 		
 		<script>
+
+			
+
+
 			var firstSeatLabel = 1;
 			var choice,result;
 			var lookup_map = [
@@ -260,6 +264,39 @@
 							[ 'a', 'Empty seat']
 					    ];	
 
+			var my_map;
+			var my_occupied;
+			var my_col, my_row, my_pref;
+			var ready= false;
+
+			//$('#get_booking_btn').click(function() {
+			
+
+				$.ajax({
+				  url: "localhost:8080/api/getflight?departure=Helsinki&destination=Rome&date=12-12-2015",
+				  method: "get",
+				}).done(function(data) {
+				 	my_map = data.map;
+				 	console.log(my_map);
+				 	my_occupied = data.occupied;
+				 	console.log(my_occupied);
+				 	ready = true;
+
+				});
+	
+
+			$('.checkin_completed').click(function() {
+				$.ajax({
+
+				  url: "localhost:8080/api/reservation?id_flight=563f34c0c4ac1532122b96c2&id_user=563e4767a91e193c42a5ff81"
+				  +"&preference="+my_pref
+				  +"&row="+my_row
+				  +"&column="+my_col,
+				  method: "post",
+				}).done(function(data) {
+				 	console.log("ADDED");
+				});
+			});
 			    /*$("#site").cycle({
 			        fx : "scrollHorz",
 			        next : ".next a",
@@ -302,24 +339,15 @@
 			$(document).ready(function() {
 			//$('select').on('change', function() {
   				//choice = $(this).val();
-  				console.log(choice);
+  				
   				//$(".next a").click();
-
+  				if(ready==true) {
+  					console.log(my_map);
 				var $cart = $('#selected-seats'),
 					$counter = $('#counter'),
 					$total = $('#total'),
 					sc = $('#seat-map').seatCharts({
-					map: [
-						'af_aaaaa_aa',
-						'ff_aaaaa_aa',
-						'aa_aaaaa_aa',
-						'cc_aaaaa_aa',
-						'ea_waaaa_aa',
-						'aa_aaaaa_aa',
-						'ss_aaaaa_aa',
-						'aa_aaaaa_aa',
-						'aa_aaaaa_aa',
-					],
+					map: my_map,
 					seats: {
 						c: {
 							price   : 40,
@@ -382,15 +410,15 @@
 								.data('seatId', this.settings.id)
 								.appendTo($cart);
 
-								$('#column').val(this.settings.column);
-								$('#row').val(this.settings.row);
+								my_col = this.settings.column;
+								my_row = this.settings.row;
 								var selected = $('select').find('option:selected').text();
 								//sc = $('#seat-map');
 								
 								$.each(lookup_map, function(index, item) {
 									
 									if(item[1] === selected)
-										$('#preference').val(item[0]);
+										my_pref = item[0];
 								});
 								
 								//console.log(this.settings);
@@ -433,9 +461,10 @@
 					//let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
 					sc.get($(this).parents('li:first').data('seatId')).click();
 				});
-
+				console.log(my_occupied);
 				//let's pretend some seats have already been booked
-				sc.get(['1_2','2_1', '2_2', '4_1','4_2','5_1','5_3','5_4', '7_1', '7_2']).status('unavailable');
+				sc.get(my_occupied).status('unavailable');
+			}
 		
 		});
 

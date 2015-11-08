@@ -37,9 +37,6 @@ function hideAllComponents() {
     $('.select_place').hide();
     $('.seat_map').hide();
     
-    $('.search_results').hide();
-    $('.book-confirmed').hide();
-
 
 }
 
@@ -51,161 +48,26 @@ function searchFlight() {
     var destination = $('#destination').val();
     var departure_date = $('#departure_date').val();
     var return_date = $('#return_date').val();
-    console.log("raw string: " + departure_date);
-    var date = new Date(departure_date);
-    console.log("Mo is annoying: " + date);
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var formattedDepartureDate = month + "-" + day + "-" + year;
-    console.log("reformatted: " + formattedDepartureDate);
     console.log("departure " + departure + ", dest " + destination + ", departure date: " +
         departure_date + ", return date: " + return_date);
-    var query = "http://localhost:8080/api/getflight?departure=" + departure + "&destination=" + destination + "&date=" + formattedDepartureDate;
+    var query = "http://localhost:8080/api/getflight?departure=" + departure + "&destination=" + destination + "&date=" + departure_date;
     console.log(query);
     $.getJSON(query, 
         function(data_inbound) {
-        if (data_inbound != undefined) {
+        console.log("check: " + data_inbound.get("_id"));
+        if (json_in != undefined) {
             //display in search results
-            console.log("Inbound-flight: " + data_inbound);
-            console.log(data_inbound._id);
-            displayInboundResults(data_inbound);
-            
+            console.log("Inbound-flight: " + json_in + " inbound");
         }
 
     });
 
-    date = new Date(return_date);
-    
-    day = date.getDate();
-    month = date.getMonth() + 1;
-    year = date.getFullYear();
-    var formattedReturnDate = month + "-" + day + "-" + year;
-    console.log("mo is annoying2: " + formattedReturnDate);
-
-    $.getJSON("http://localhost:8080/api/getflight?departure=" + destination + "&destination=" + departure + "&date=" + formattedReturnDate, 
-        function(data_outbound) {
-        if (data_outbound != undefined) {
+    $.getJSON("http://localhost:8080/api/getflight?departure=" + destination + "&destination=" + departure + "&date=" + return_date, function(json_out) {
+        if (json_out != undefined) {
             //display in search results
-            console.log("Outbound-flight: " + data_outbound);
-            console.log(data_outbound._id);
-            displayOutboundResults(data_outbound);
+            console.log("Outbound-flight: " + json_out)
         }
     });
-
-    hideAllComponents();
-    $('.search_results').show();
-}
-
-function displayInboundResults(inbound) {
-    var inbound_tbl = $("#inbound_results");
-
-    
-    var tr = $("<tr></tr>");
-    tr.attr("id", "tr_" + inbound._id);
-    var p = "‎350.0";
-
-    var id_td = document.createElement("td");
-    id_td.className = "flight_id";
-    var id = document.createTextNode(inbound._id);
-    id_td.appendChild(id);
-
-    var dep_td = document.createElement("td");
-    dep_td.className = "departure";
-    var departure = document.createTextNode(inbound.departure);
-    dep_td.appendChild(departure);
-
-    var des_td = document.createElement("td");
-    des_td.className = "destination";
-    var destination = document.createTextNode(inbound.destination);
-    des_td.appendChild(destination);
-
-    var date_td = document.createElement("td");
-    date_td.className = "date";
-    var date = document.createTextNode(inbound.date);
-    date_td.appendChild(date);
-
-    var price_td = document.createElement("td");
-    price_td.className = "price";
-    var price = document.createTextNode(p);
-    price_td.appendChild(price);
-
-    var checkbox_td = $("<td></td>");
-    checkbox_td.addClass("checkbox");
-    checkbox_td.className = "checkbox";
-    var checkbox = $("<input></input>");
-    checkbox.addClass("cb");
-    checkbox.attr("style", "position:relative; visibility: visible; left:30px");
-    checkbox.attr("type", "checkbox");
-    checkbox.attr("id", "cb_" + inbound._id);
-    checkbox.attr('checked', 'checked');
-    checkbox_td.append(checkbox);
-
-    
-        tr.append(id_td);
-        tr.append(dep_td);
-        tr.append(des_td);
-        tr.append(date_td);
-        tr.append(price_td);
-        tr.append(checkbox_td);
-    inbound_tbl.append(tr);
-}
-
-function displayOutboundResults(inbound) {
-    var inbound_tbl = $("#outbound_results");
-
-    
-    var tr = $("<tr></tr>");
-    tr.attr("id", "tr_" + inbound._id);
-    var p = "‎350.0";
-
-    var id_td = document.createElement("td");
-    id_td.className = "flight_id";
-    var id = document.createTextNode(inbound._id);
-    id_td.appendChild(id);
-
-    var dep_td = document.createElement("td");
-    dep_td.className = "departure";
-    var departure = document.createTextNode(inbound.departure);
-    dep_td.appendChild(departure);
-
-    var des_td = document.createElement("td");
-    des_td.className = "destination";
-    var destination = document.createTextNode(inbound.destination);
-    des_td.appendChild(destination);
-
-    var date_td = document.createElement("td");
-    date_td.className = "date";
-    var date = document.createTextNode(inbound.date);
-    date_td.appendChild(date);
-
-    var price_td = document.createElement("td");
-    price_td.className = "price";
-    var price = document.createTextNode(p);
-    price_td.appendChild(price);
-
-    var checkbox_td = $("<td></td>");
-    checkbox_td.addClass("checkbox");
-    checkbox_td.className = "checkbox";
-    var checkbox = $("<input></input>");
-    checkbox.attr("style", "position:relative; visibility: visible; left:30px");
-    
-    checkbox.attr("type", "checkbox");
-    checkbox.addClass("cb");
-    checkbox.attr('checked', 'checked');
-    checkbox.attr("id", "cb_" + inbound._id);
-    checkbox_td.append(checkbox);
-
-    
-        tr.append(id_td);
-        tr.append(dep_td);
-        tr.append(des_td);
-        tr.append(date_td);
-        tr.append(price_td);
-        tr.append(checkbox_td);
-    inbound_tbl.append(tr);
-
-
 }
 
 // jQuery-menu-aim: </meaningful part of the example>
@@ -330,11 +192,6 @@ $('#seat_map_btn').click(function() {
   $('.checkin_completed').click(function() {
     hideAllComponents();
     $('.checkin-result').show();
-  });
-
-$('#book_btn').click(function() {
-    hideAllComponents();
-    $('.book-confirmed').show();
   });
 
 }
