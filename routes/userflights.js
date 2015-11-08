@@ -113,10 +113,10 @@ function assignseat(freeseat, clusterofseat, preference){
       if(key === preference){
         existingcluster=true;
         seat=grouptocluster(freeseat, value);
-        console.log("hey");
+        //console.log("hey");
         if(seat.row === -1){
           seat=calculatefarestseat(freeseat, clusterofseat);
-          console.log("sdfdfsdfs");
+
           var seatgroup= [];
           seatgroup=clusterofseat.get(preference);
           seatgroup.push(seat);
@@ -127,7 +127,7 @@ function assignseat(freeseat, clusterofseat, preference){
 
     if(!existingcluster){
       seat=calculatefarestseat(freeseat, clusterofseat);
-      console.log("oi");
+      //console.log("oi");
       var newseatgroup= [];
       newseatgroup.push(seat);
       clusterofseat.set(preference,newseatgroup);
@@ -136,26 +136,70 @@ function assignseat(freeseat, clusterofseat, preference){
     return seat;
 }
 
+function compare(a,b) {
+  if (a.row < b.row)
+    return -1;
+  if (a.row > b.row)
+    return 1;
+  return 0;
+}
+
 function grouptocluster(freeseat, seatgroup){
   var seat= {};
   var max=0, tmp;
-  console.log(seatgroup);
+  //console.log(freeseat);
+  //freeseat.sort(compare);
+  //console.log("===========================\n" + freeseat);
+  //console.log("ROW"+seatgroup[0].row);
+  //console.log("Free"+freeseat[seatgroup[0].row].row);
+  var all_close_seats = [];
   for(var i=0;i<freeseat.length;i++){
     tmp=closestseat(freeseat[i],seatgroup);
-    if(tmp == 1){
-      return freeseat[i];
+    if(tmp === 1){
+      all_close_seats.push(freeseat[i]);
     }
   }
+  //console.log(all_close_seats.length);
+  var clusterRow = seatgroup[0].row;
+  var clusterColumn = seatgroup[0].column;
+  var minRowDist = 100000;
+  var minColumnDist = 100000;
+  var found = false;
+  var closestRowSeat;
+  for(var i=0;i<freeseat.length;i++){
+    curRowDist = Math.abs(freeseat[i].row - clusterRow);
+    //console.log(curRowDist);
+    if(curRowDist<minRowDist){
+      minRowDist = curRowDist;
+      closestRowSeat = freeseat[i];
+      found = true;
+    }
+    else if(curRowDist===minRowDist){
+      curColumnDist = Math.abs(freeseat[i].column - clusterColumn);
+      if(curColumnDist<minColumnDist){
+        minColumnDist = curColumnDist;
+        closestRowSeat = freeseat[i];
+        found = true;
+      }
+
+    }
+
+  }
+  if(found){
+    return closestRowSeat;
+  }
+  else{
   seat.row=-1;
 
   return seat;
+}
 }
 
 function closestseat(seat,seatgroup){
   var mindist=10000,tmpdistance;
     for(var i=0;i<seatgroup.length;i++){
       tmpdistance=distancecalculator(seat,seatgroup[i]);
-      console.log(tmpdistance + "=" + seat + seatgroup[i]);
+      //console.log(tmpdistance + "=" + seat + seatgroup[i]);
       if(tmpdistance<mindist){
         mindist=tmpdistance;
       }
@@ -191,8 +235,8 @@ return mindist;
 
 function distancecalculator(freeseat,occseat){  //22A
   var row_distance=0, column_distance=0;
-  row_distance=freeseat.row - occseat.row;
-  column_distance=freeseat.column - occseat.column;
+  row_distance=Math.abs(freeseat.row - occseat.row);
+  column_distance=Math.abs(freeseat.column - occseat.column);
   return Math.abs(row_distance + column_distance);
 }
 
