@@ -1,0 +1,160 @@
+body {
+	font-family: 'Lato', sans-serif;
+}
+a {
+	color: #b71a4c;
+}
+.front-indicator {
+	/*width: 145px;*/
+	margin: 5px 32px 15px 32px;
+	background-color: #f6f6f6;	
+	color: #adadad;
+	text-align: center;
+	padding: 3px;
+	border-radius: 5px;
+}
+.wrapper {
+	width: 100%;
+	text-align: center;
+}
+.container {
+	margin: 0 auto;
+	/*width: 500px;*/
+	text-align: left;
+}
+.booking-details {
+	float: left;
+	text-align: left;
+	margin-left: 35px;
+	font-size: 12px;
+	position: relative;
+	height: 401px;
+}
+.booking-details h2 {
+	margin: 25px 0 20px 0;
+	font-size: 17px;
+}
+.booking-details h3 {
+	margin: 5px 5px 0 0;
+	font-size: 14px;
+}
+div.seatCharts-cell {
+	color: #182C4E;
+	height: 25px;
+	width: 25px;
+	line-height: 25px;
+	
+}
+div.seatCharts-seat {
+	color: #FFFFFF;
+	cursor: pointer;	
+}
+div.seatCharts-row {
+	height: 35px;
+}
+
+
+div.seatCharts-seat.chatty-class {
+	background-color: #2ECC71;
+}
+div.seatCharts-seat.social-class {
+	background-color: #F89406;
+}
+div.seatCharts-seat.nappy-class {
+	background-color: #1E8BC3;
+}
+div.seatCharts-seat.workaholic-class {
+	background-color: #BF55EC;
+}
+div.seatCharts-seat.easygoing-class {
+	background-color: #F4D03F;
+}
+div.seatCharts-seat.family-class {
+	background-color: #D91E18;
+}
+div.seatCharts-seat.focused {
+	background-color: #76B474;
+}
+div.seatCharts-seat.selected {
+	/*background-color: #E6CAC4;*/
+	-ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Chrome, Safari, Opera */
+    transform: scale(1.2);
+}
+
+div.seatCharts-seat.available {
+	background-color: #BDC3C7;
+
+}
+div.seatCharts-container {
+	border-right: 1px dotted #adadad;
+	width: 500px;
+	padding: 20px;
+	float: right;
+}
+div.seatCharts-legend {
+	padding-left: 0px;
+	position: absolute;
+	bottom: 16px;
+}
+ul.seatCharts-legendList {
+	padding-left: 0px;
+}
+span.seatCharts-legendDescription {
+	margin-left: 5px;
+	line-height: 30px;
+}
+.checkout-button {
+	display: block;
+	margin: 10px 0;
+	font-size: 14px;
+}
+#selected-seats {
+	max-height: 90px;
+	overflow-y: scroll;
+	overflow-x: none;
+	width: 170px;
+}
+.next {
+	display: none;
+}
+
+/*
+.prev, .next {
+    display:table;        
+    overflow:hidden;
+    height:100%;
+    width:1.5em;
+    position:absolute;
+    top:0;
+}
+.prev{
+  left:0
+}
+.next{
+  right:0
+}
+
+.prev a, .next a {
+    display:table-cell;
+    vertical-align:middle;
+    height:30px;
+    text-align:center;
+    background:#333;
+    text-decoration:none;
+    color:#999;
+    font-weight:900;
+    font-size:1.5em
+}
+.prev a:hover, .next a:hover {color:#eee;}
+.prev a{
+    border-radius:0 0.5em 0.5em 0;   
+}
+.next a{
+    border-radius:0.5em 0 0 0.5em;
+}
+/*
+p {padding:2em}
+h1 {font-size:2em;padding:1em;font-weight:900}
+
+*/

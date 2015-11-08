@@ -34,6 +34,10 @@ function hideAllComponents() {
     $('.checkin-verify').hide();
     $('.search-results').hide();
     $('.checkin-result').hide();
+    $('.select_place').hide();
+    $('.seat_map').hide();
+    
+
 }
 
 function searchFlight() {
@@ -175,6 +179,19 @@ var main = function() {
   $('#get_booking_btn').click(function() {
     hideAllComponents();
     $('.checkin').show();
+  });
+
+$('#seat_map_btn').click(function() {
+    hideAllComponents();
+    $('.seat_map').show();
+  });
+  $('#use_sezi_btn').click(function() {
+    hideAllComponents();
+    $('.checkin-result').show();
+  });
+  $('.checkin_completed').click(function() {
+    hideAllComponents();
+    $('.checkin-result').show();
   });
 
 }
