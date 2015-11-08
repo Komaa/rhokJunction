@@ -5,28 +5,27 @@
 * -
 * -
 */
-function preprocess(seatmap, preference){
-  var clusterofseat = new Map();  //<sleepy, arrayofseat[22A,22B,22C, etc.]
-  clusterofseat=createclustermap(seatmap);
-  var freeseat= []; //arrayofseat[21A,21B,21C, etc.]
-  freeseat=calculatefreeseat(seatmap);
-  return assignseat(freeseat,clusterofseat,preference);
-}
+
+module.exports = {
+  preprocess: function (seatmap, preference) {
+    var clusterofseat = new Map();  //<c, arrayofseat[22A,22B,22C, etc.]
+    clusterofseat=createclustermap(seatmap);
+    var freeseat= []; //arrayofseat[21A,21B,21C, etc.]
+    freeseat=calculatefreeseat(seatmap);
+    return assignseat(freeseat,clusterofseat,preference);
+  },
+
+};
 
 function calculatefreeseat(seatmap){
   var freeseat= [];
   var seat= {};
-  var col;
   for(i=0;i<seatmap.length;i++){
     for(j=0;j<seatmap[i].length;j++){
-      if(seatmap[i][j] !== "_" && seatmap[i][j] !== "/0"){
-        if(seatmap[i][j] === "a"){
-          if(j<3)
-            col=j-1;
-          else if(j>7)
-            col=j+1;
+      if(seatmap[i][j] !== '_' && seatmap[i][j] !== '/0'){
+        if(seatmap[i][j] === 'a'){
           seat.row=i;
-          seat.column=col;
+          seat.column=j;
           freeseat.push(seat);
         }
       }
@@ -43,12 +42,8 @@ function createclustermap(seatmap){
   for(i=0;i<seatmap.length;i++){
     for(j=0;j<seatmap[i].length;j++){//<sleepy, arrayofseat[22A,22B,22C, etc.]
       if((seatmap[i][j] !== "_") && (seatmap[i][j] !== "/0") && (seatmap[i][j] !== "a")){
-        if(j<3)
-          col=j-1;
-        else if(j>7)
-          col=j+1;
         seat.row=i;
-        seat.column=col
+        seat.column=j;
         seats=clusterofseat.get(seatmap[i][j]);
         if(seats){
           seats.push(seat);
@@ -72,7 +67,7 @@ function assignseat(freeseat, clusterofseat, preference){
       if(key === preference){
         existingcluster=true;
         seat=grouptocluster(freeseat, value);
-        if(seat.row== -1){
+        if(seat.row === -1){
           seat=calculatefarestseat(freeseat, clusterofseat);
           var seatgroup= [];
           seatgroup=myMap.get(preference);
@@ -96,7 +91,7 @@ function grouptocluster(freeseat, seatgroup){
 
   for(i=0;i<freeseat.length;i++){
     tmp=closestseat(freeseat[i],seatgroup);
-    if(tmp==1){
+    if(tmp === 1){
       return freeseat[i];
     }
   }

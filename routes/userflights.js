@@ -3,6 +3,9 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var algorithm_sezi = require('../algorithm_sezi');
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
 
 
 //set a reservation
@@ -30,22 +33,19 @@ router.route('/checkin').post(function(req, res) {
   var seatmap=[];
   for(i=0;i<50;i++)
     seatmap.push('aa_aaaaa_aa');
-  Seat.find({id_flight: seat.id_flight}, function(err, seats) {
+  Seat.find({id_flight: givenseat.id_flight}, function(err, seats) {
+  for(i=0; i< seats.length; i++) {
+    seatmap[seats[i].seat.row]=seatmap[seats[i].seat.row].replaceAt(seats[i].seat.column,seats[i].preference);
 
-  seats.each (function (error, seat){
-    if(seat.column<3)
-      seat.column-=1;
-    else if(seat.column>7)
-      seat.column+=1;
-    seatmap[seat.row][seat.column]=seats.preference;
-
-    });
+    }
   });
   givenseat.seat=algorithm_sezi.preprocess(seatmap,givenseat.preference);
+  console.log(givenseat);
   givenseat.save(function(err) {
     if (err) {
       return res.send(err);
     }
+    return res.send('Checked In');
   });
 });
 

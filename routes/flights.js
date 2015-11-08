@@ -25,10 +25,7 @@ router.route('/getflight').get(function(req, res) {
       for(i=0; i< seats.length; i++) {
 
         flights.occupied.push(seats[i].seat.row + "_" + seats[i].seat.column) //['1_2','2_1', '2_2', '4_1','7_1','7_2']
-        if(seats[i].seat.column<3)
-          seats[i].seat.column-=1;
-        else if(seats[i].seat.column>7)
-          seats[i].seat.column+=1;
+      
             flights.map[seats[i].seat.row]=flights.map[seats[i].seat.row].replaceAt(seats[i].seat.column,seats[i].preference);
     }
       //});
