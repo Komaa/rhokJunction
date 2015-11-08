@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>
+			Finnair
+		</title>
+		<style class="anchorjs"></style>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet'>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+		<link href="./css/style.css" rel="stylesheet">
+		<!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	</head>
+
+<body>
+    <div class="header">
+      <div class="container">
+        <a href="#" class="logo-icon">
+          <img src="./images/logo.png" height="40" width="120">
+        </a>
+
+        <ul class="nav nav-pills menu">
+        	<!-- Nav bar pills menu item  MAKEUP-->
+			<li role="presentation" class="dropdown">
+	    		<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+	      Search Flights <span class="caret"></span></a>
+	    		
+	    		<ul class="dropdown-menu">
+	    			<li role="presentation"><a href="#">Loyalty Promo</a></li>
+					<li role="presentation"><a href="#">Popular Destination</a></li>
+				    <li role="presentation"><a href="#" class="show_search">Search</a></li>
+	    		</ul>
+	  		</li>
+
+	  		<!-- Nav bar pills menu item SKINCARE -->
+	  		<li role="presentation" class="dropdown">
+	    		<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+	      Manage Booking<span class="caret"></span></a>
+	    		
+	    		<ul class="dropdown-menu">
+	    			<!-- First level dropdown menu -->
+					<li role="presentation"><a href="#" class="checkin-btn">Check In</a></li>
+					<li role="presentation"><a href="#">View Ticket</a></li>
+				    <li role="presentation"><a href="#">Cancel or Change</a></li>
+				    
+	    		</ul>
+	  		</li>
+
+	  		<!-- Last menu item SPECIAL OFFERS YAY!!!!!!-->
+	  		<li style="background-color:orange;" role="presentation">
+	    		<a style="color: white;" href="#" role="button">Special Offers</a>
+	    	</li>
+	  		
+
+		</ul>
+      </div>
+    </div>
+
+
+    
+	    <div class="slider">
+
+	    <div class="slide active-slide slide-feature">
+	        <div style="height:100%; position:relative" class="container">
+	          <div class="row" style="height:100%; width:100%">
+	            <div class="slide-copy col-xs-12">
+	              <h1 style="color:#D8D8D8">Discover the World</h1>
+	            </div>
+	            
+	          </div>
+	        </div>      
+	      </div>
+
+	      
+	      <div class="slide">
+	        <div class="container">
+	          <div class="row">
+	            <div class="slide-copy col-xs-5">
+	              <h1>Discover Cultures</h1>
+	              <h2>Be Inspired.</h2>
+	              <h2>Be Empowered.</h2>
+	              
+	            </div>
+	            <div class="slide-img col-xs-7">
+	              <img src="./images/2.jpg" height="470px">
+	            </div>
+	            
+	          </div>
+	        </div>      
+	      </div> 
+
+	      <div class="slide">
+	        <div class="container">
+	          <div class="row">
+	            <div class="slide-copy col-xs-5">
+	              <h1>Dicover Places</h1>
+	              <h2>Enjoy A Perfect Holiday</h2>
+	              
+	            </div>
+	            <div class="slide-img col-xs-7">
+	              <img src="./images/1.jpg" height="470px">
+	            </div>
+	          </div>
+	        </div>      
+	      </div> 
+
+	      <div class="slide">
+	        <div class="container">
+	          <div class="row">
+	            <div class="slide-copy col-xs-5">
+	              <h1>Wonderful In-flight Experience</h1>
+	              <p>Sit with like-minded people.</p>
+	              <h2><a href="#" class="show_search">Book Now!</a></h2>
+	            </div>
+	            <div class="slide-img col-xs-7">
+	              <img src="./images/3.jpg" height="470px">
+	            </div>
+	            
+	          </div>
+	        </div>      
+	      </div> 
+		</div>
+
+		<div class="slider-nav">
+	      <a href="#" class="arrow-prev"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-prev.png"></a>
+	      <ul class="slider-dots">
+	        <li class="dot active-dot">&bull;</li>
+	        <li class="dot">&bull;</li>
+	        <li class="dot">&bull;</li>
+	        <li class="dot">&bull;</li>
+	      </ul>
+	      <a href="#" class="arrow-next"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-next.png"></a>
+	    </div> 
+
+	<div class="search">
+		<div class="container">
+
+		<form id="search_flight" class="form-horizontal">
+
+		<!-- Departure input-->
+		<div class="form-group">
+		  <label class="col-xs-3 control-label" for="departure">Departure</label>  
+		  <div class="col-xs-4">
+
+		  <input id="departure" name="departure" type="text" placeholder="Helsinki" class="form-control input-md" required="">
+		    
+		  </div>
+		  <div class="col-xs-3">
+		  <input id="departure_date" name="departure_date" type="date" placeholder="Helsinki" class="form-control input-md" required="" data-date-format="MM-DD-YYYY">
+		    
+		  </div>
+		</div>
+
+		<!-- Destination input-->
+		<div class="form-group">
+		  <label class="col-xs-3 control-label" for="destination">Destination</label>  
+		  <div class="col-xs-4">
+		  <input id="destination" name="destination" type="text" placeholder="--Choose your destination" class="form-control input-md" required="">
+		    
+		  </div>
+		  
+		  <div class="col-xs-3">
+		  <input id="return_date" name="return_date" type="date" placeholder="Helsinki" class="form-control input-md" 
+		  data-date-format="MM-DD-YYYY">
+		    
+		  </div>
+		</div>
+
+		<div class="form-group">
+		    <div class="col-xs-offset-3 col-xs-4">
+		      <div class="checkbox" id="return">
+		        <label class="active">
+		          <input type="checkbox" checked> Return
+		        </label>
+		      </div>
+		    </div>
+		  </div>
+
+			<div class="form-group">
+			    <div class="col-xs-offset-5 col-xs-4">
+			      <a class="waves-effect waves-light btn" id="search_flight_btn" >Search</a>
+			    </div>
+			  </div>
+			</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="search_results" style="display:none">
+		
+		<div class="container" id="search_results_tbl">
+			<h2>In-bound</h2>
+			<table class="striped highlight">
+              <thead>
+                <tr> 
+                  
+                  <th data-field="flight_id">Fligt ID</th>
+                  <th data-field="departure">Departure</th>
+                  <th data-field="destination">Destination</th>
+                  <th data-field="date">Date</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="checkbox">Select</th>
+                </tr>
+              </thead>
+
+              <tbody id="inbound_results">
+                
+
+              </tbody>
+            </table>
+
+            <h2>Outbound</h2>
+            <table class="striped highlight">
+              <thead>
+                <tr> 
+                  
+                  <th data-field="flight_id">Fligt ID</th>
+                  <th data-field="departure">Departure</th>
+                  <th data-field="destination">Destination</th>
+                  <th data-field="date">Date</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="checkbox">Select</th>
+                </tr>
+              </thead>
+
+              <tbody id="outbound_results">
+                
+
+              </tbody>
+            </table>
+
+            <br>
+            <br>
+            <div class="col-xs-offset-5 col-xs-4">
+					<a class="waves-effect waves-light btn" id="book_btn" >Book</a>
+				</div>  
+			
+		</div>
+	</div>
+
+	<div class="book-confirmed" style="display:none"> 
+		<div class="container">
+			<h2> Thank you for booking with Finnar!</h2>
+			<h2> Your reservation number is: AY1045</h2>
+		</div>
+	</div>
+
+	<div class="checkin-verify" style="display:none">
+		<div class="container">
+			<div class="row">
+				
+				<div class="form-horizontal">
+				<label class="col-xs-5 control-label" for="booking_reference">Your Booking Reference</label> 
+				
+				<div class="col-xs-5">
+					<input id="booking_reference" name="booking_reference" type="text" placeholder="Example: ABNH12" required=""> 
+				</div>
+			</div>
+
+				<div class="col-xs-offset-5 col-xs-4">
+					<a class="waves-effect waves-light btn" id="get_booking_btn" >Submit</a>
+				</div>   
+			</div>
+		</div>
+	</div>
+
+	<div class="checkin" style="display:none">
+		<div class="container">
+
+			<div class="col-xs-offset-2 col-xs-10" style="margin:20px; text-align:center">
+			<h6>Tell us what type of traveller you are? We will help you meet like-minded people.</h6>
+			</div>
+
+			<form id="checkin_form" class="form-horizontal">
+
+				<!-- Departure input-->
+				<div class="form-group">
+					<div class="row">
+				  
+					  <div class="col-xs-offset-3 col-xs-4">
+					  	<a class="waves-effect waves-light btn-large category tooltipped" style="background-color:#2ECC71" data-delay="50" data-tooltip="Chitter chatter" data-position="right">The Chatty</a>
+					  </div>
+
+					  <div class="col-xs-offset-3 col-xs-4">
+					  	<a class="waves-effect waves-light btn-large category tooltipped" style="background-color:#F89406" data-delay="50" data-tooltip="Game on! Challenge accepted!" data-position="right">The Social Gamer</a>
+					  </div>	
+
+					  <div class="col-xs-offset-3 col-xs-4">
+					  	<a class="waves-effect waves-light btn-large category tooltipped" style="background-color:#1E8BC3" data-delay="50" data-tooltip="zzz... in progress" data-position="right">The Nappy</a>
+					  </div>
+
+					  <div class="col-xs-offset-3 col-xs-4">
+					  	<a class="waves-effect waves-light btn-large category tooltipped" style="background-color:#BF55EC" data-delay="50" data-tooltip="Do not disturb!" data-position="right">The Workaholic</a>
+					  </div>
+
+					  <div class="col-xs-offset-3 col-xs-4">
+					  	<a class="waves-effect waves-light btn-large category tooltipped" style="background-color:#F4D03F" data-delay="50" data-tooltip="Whatever! It's cool!" data-position="right">The Easy Going</a>
+					 </div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="checkin-result" style="display:none">
+		<div class="container">
+
+		</div>
+	</div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="./js//jquery.menu-aim.js" type="text/javascript"></script>
+			<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	
+    <script src="./js/app.js"></script>
+  </body>
+		
+</html>
