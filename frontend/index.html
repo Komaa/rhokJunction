@@ -150,7 +150,7 @@
 		    
 		  </div>
 		  <div class="col-xs-3">
-		  <input id="departure_date" name="departure_date" type="date" placeholder="Helsinki" class="form-control input-md" required="" data-date-format="DD-MM-YYYY">
+		  <input id="departure_date" name="departure_date" type="date" placeholder="Helsinki" class="form-control input-md" required="" data-date-format="MM-DD-YYYY">
 		    
 		  </div>
 		</div>
@@ -164,7 +164,8 @@
 		  </div>
 		  
 		  <div class="col-xs-3">
-		  <input id="return_date" name="return_date" type="date" placeholder="Helsinki" class="form-control input-md" data-date-format="DD-MM-YYYY">
+		  <input id="return_date" name="return_date" type="date" placeholder="Helsinki" class="form-control input-md" 
+		  data-date-format="MM-DD-YYYY">
 		    
 		  </div>
 		</div>
@@ -190,7 +191,61 @@
 	</div>
 
 	<div class="search_results" style="display:none">
+		
+		<div class="container" id="search_results_tbl">
+			<h2>In-bound</h2>
+			<table class="striped highlight">
+              <thead>
+                <tr> 
+                  
+                  <th data-field="flight_id">Fligt ID</th>
+                  <th data-field="departure">Departure</th>
+                  <th data-field="destination">Destination</th>
+                  <th data-field="date">Date</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="checkbox">Select</th>
+                </tr>
+              </thead>
+
+              <tbody id="inbound_results">
+                
+
+              </tbody>
+            </table>
+
+            <h2>Outbound</h2>
+            <table class="striped highlight">
+              <thead>
+                <tr> 
+                  
+                  <th data-field="flight_id">Fligt ID</th>
+                  <th data-field="departure">Departure</th>
+                  <th data-field="destination">Destination</th>
+                  <th data-field="date">Date</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="checkbox">Select</th>
+                </tr>
+              </thead>
+
+              <tbody id="outbound_results">
+                
+
+              </tbody>
+            </table>
+
+            <br>
+            <br>
+            <div class="col-xs-offset-5 col-xs-4">
+					<a class="waves-effect waves-light btn" id="book_btn" >Book</a>
+				</div>  
+			
+		</div>
+	</div>
+
+	<div class="book-confirmed" style="display:none"> 
 		<div class="container">
+			<h2> Thank you for booking with Finnar!</h2>
+			<h2> Your reservation number is: AY1045</h2>
 		</div>
 	</div>
 
